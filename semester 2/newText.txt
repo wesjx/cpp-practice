@@ -1,0 +1,3 @@
+Maior: 5
+Multiplicacao Diagonal Principal: 10
+Soma Diagonal Secundaria: 9
