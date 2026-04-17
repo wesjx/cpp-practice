@@ -6,6 +6,7 @@ typedef struct Products{
     int initialQuantity;
     int quantitySold;
     double price;
+    int quantityAvailable;
 } Product;
 
 void registerProducts(Product* product) {
@@ -16,24 +17,37 @@ void registerProducts(Product* product) {
 
     for(int i = 0; i < quantity; i++){
         cout << "Type the product name: ";
-        cin >> product[quantity].name;
+        cin >> product[i].name;
 
-        cout << "Type initial quantity of product: ";
-        cin >> product[quantity].initialQuantity;
+        bool checkQuantity = true;
 
-        cout << "Type quantity of product sold: ";
-        cin >> product[quantity].quantitySold;
+        while (checkQuantity)
+        {
+            cout << "Type initial quantity of product: ";
+            cin >> product[i].initialQuantity;
+            
+            cout << "Type quantity of product sold: ";
+            cin >> product[i].quantitySold;  
+            
+            product[i].quantityAvailable = product[i].initialQuantity - product[i].quantitySold;
+            
+            if(product[i].quantityAvailable >= 0){
+                checkQuantity = false;
+            } else {
+            cout << "You cannot save more products sold than initial product. Try again.\n";
+            }
+        }
 
         cout << "Type the price of product: ";
-        cin >> product[quantity].price;
+        cin >> product[i].price;
     }
 
     for (int i = 0; i < quantity; i++)
     {
-        cout << "name: " << product[quantity].name;
+        cout << "Name: " << product[i].name << "\n";
+        cout << "Quantity available: " << product[i].quantityAvailable << "\n";
     }
     
-
     delete[] quantityPointer;
 }
 
